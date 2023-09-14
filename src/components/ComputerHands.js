@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import gameContext from "../context/gameContext";
 
-export default function ComputerHands({ computerSelection }) {
+export default function ComputerHands() {
+  const { computerSelection } = useContext(gameContext);
   return (
     <div className="hands">
       <img
