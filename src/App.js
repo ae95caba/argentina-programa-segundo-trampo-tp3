@@ -35,9 +35,11 @@ function App() {
         {userName ? (
           <>
             <Scoreboard />
-            <Hands />
-            <Controls />
-            <ComputerHands />
+            <main>
+              <Hands />
+              <Controls />
+              <ComputerHands />
+            </main>
             {userCounter >= 3 && <Confetti width={width} height={height} />}
           </>
         ) : (

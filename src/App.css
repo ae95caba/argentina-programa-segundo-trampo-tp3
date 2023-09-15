@@ -49,13 +49,19 @@ form {
   padding: 0px;
 }
 
+.swal2-container {
+  opacity: 0.9;
+}
+
 #root {
   display: grid;
   max-width: 100vw;
-  gap: 1.6rem;
+
   justify-items: center;
   align-items: center;
-
+  height: 100vh;
+  height: 100svh;
+  grid-template-rows: min-content 1fr;
   margin: auto;
 }
 
@@ -63,6 +69,11 @@ video {
   max-width: 100vw;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
 header {
   max-width: 100vw;
   display: flex;
