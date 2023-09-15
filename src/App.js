@@ -7,12 +7,15 @@ import Controls from "./components/Controls";
 import gameContext from "./context/gameContext";
 import Form from "./components/Form";
 import intro from "./assets/intro.mp4";
+import Confetti from "react-confetti";
+import { useWindowSize } from "react-use";
 function App() {
   const [userSelection, setUserSelection] = useState(null);
   const [computerSelection, setComputerSelection] = useState(null);
   const [userName, setUserName] = useState(null);
   const [userCounter, setUserCounter] = useState(0);
   const [computerCounter, setComputerCounter] = useState(0);
+  const { width, height } = useWindowSize();
   return (
     <gameContext.Provider
       value={{
@@ -35,6 +38,7 @@ function App() {
             <Hands />
             <Controls />
             <ComputerHands />
+            {userCounter >= 3 && <Confetti width={width} height={height} />}
           </>
         ) : (
           <>
