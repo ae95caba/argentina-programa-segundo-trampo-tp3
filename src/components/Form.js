@@ -18,7 +18,7 @@ export default function Form() {
           autoFocus
           required
           minLength={2}
-          maxLength={12}
+          maxLength={10}
         />
       </label>
       <button>JUGAR</button>
