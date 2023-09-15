@@ -12,8 +12,14 @@ export default function Form() {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        <p>Ingresa tu nombre para comenzar</p>{" "}
-        <input name="username" autoFocus required minLength={2} />
+        <p>Ingresa tu nombre para comenzar</p>
+        <input
+          name="username"
+          autoFocus
+          required
+          minLength={2}
+          maxLength={12}
+        />
       </label>
       <button>JUGAR</button>
     </form>
