@@ -15,7 +15,7 @@ export default function Form() {
         <p>Ingresa tu nombre para comenzar</p>{" "}
         <input name="username" autoFocus required minLength={2} />
       </label>
-      <button>Ok</button>
+      <button>JUGAR</button>
     </form>
   );
 }

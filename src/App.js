@@ -10,7 +10,8 @@ function App() {
   const [userSelection, setUserSelection] = useState(null);
   const [computerSelection, setComputerSelection] = useState(null);
   const [userName, setUserName] = useState(null);
-
+  const [userCounter, setUserCounter] = useState(0);
+  const [computerCounter, setComputerCounter] = useState(0);
   return (
     <gameContext.Provider
       value={{
@@ -18,6 +19,10 @@ function App() {
         setUserSelection,
         computerSelection,
         setComputerSelection,
+        userCounter,
+        setUserCounter,
+        computerCounter,
+        setComputerCounter,
         setUserName,
         userName,
       }}
@@ -27,8 +32,8 @@ function App() {
           <>
             <Scoreboard />
             <Hands />
+
             <ComputerHands />
-            <Controls />
           </>
         ) : (
           <Form />

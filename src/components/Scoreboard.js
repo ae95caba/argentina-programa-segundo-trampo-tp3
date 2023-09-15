@@ -2,13 +2,15 @@ import React, { useEffect, useState, useContext } from "react";
 import gameContext from "../context/gameContext";
 import Swal from "sweetalert2";
 export default function Scoreboard() {
-  const [userCounter, setUserCounter] = useState(0);
-  const [computerCounter, setComputerCounter] = useState(0);
   const {
     userSelection,
     computerSelection,
     userName,
     setUserSelection,
+    userCounter,
+    setUserCounter,
+    computerCounter,
+    setComputerCounter,
     setComputerSelection,
   } = useContext(gameContext);
 
@@ -29,7 +31,7 @@ export default function Scoreboard() {
         title: swalTitle,
         text: swalText,
         icon: swalIcon,
-
+        allowOutsideClick: false,
         confirmButtonText: "Reiniciar juego",
       }).then((result) => {
         if (result.isConfirmed) {
@@ -86,8 +88,6 @@ export default function Scoreboard() {
         // Perform your custom action here when the "OK" button is clicked
         setUserSelection(null);
         setComputerSelection(null);
-        // You can call your function here, for example:
-        // myCustomFunction();
       } else {
         // Handle other cases here
         console.log('Modal closed without clicking "OK"');
