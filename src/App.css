@@ -2,10 +2,75 @@
   display: flex;
   gap: 1rem;
   padding: 1rem;
+
   & img {
-    width: 300px;
+    width: 200px;
+    height: 200px;
     &.active {
       outline: 5px solid green;
     }
+  }
+}
+
+.controls {
+  display: flex;
+  gap: 2rem;
+  & button {
+    width: 150px;
+  }
+}
+
+body {
+}
+
+button {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  background-color: black;
+  color: white;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  font-size: 2rem;
+  justify-content: space-between;
+  & input {
+    width: 100%;
+    font-size: 2rem;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+#root {
+  display: grid;
+  gap: 2.5rem;
+  justify-items: center;
+  align-items: center;
+  width: min-content;
+  margin: auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: 0rem 1rem;
+  font-size: 2rem;
+  & p {
+    display: flex;
+    align-items: center;
+  }
+  & span {
+    margin-left: 0.5rem;
+    color: green;
+    font-size: 3rem;
+    display: block;
   }
 }

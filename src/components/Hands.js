@@ -12,10 +12,8 @@ export default function Hands() {
   }
 
   return (
-    <>
-      <h2 style={{ visibility: userSelection ? "hidden" : "visible" }}>
-        Selecciona una opcion !
-      </h2>
+    <div>
+      <h2>Selecciona una opcion:</h2>
       <div className="hands">
         <img
           onClick={handleClick}
@@ -39,8 +37,6 @@ export default function Hands() {
           className={userSelection === "paper" ? "active" : ""}
         />
       </div>
-
-      <Controls />
-    </>
+    </div>
   );
 }

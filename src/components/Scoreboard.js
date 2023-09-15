@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import gameContext from "../context/gameContext";
 import Swal from "sweetalert2";
 export default function Scoreboard() {
@@ -14,6 +14,10 @@ export default function Scoreboard() {
     setComputerSelection,
   } = useContext(gameContext);
 
+  const userCounterRef = useRef(null);
+  const computerCounterRef = useRef(null);
+
+  //game ending logic
   useEffect(() => {
     let swalIcon;
     let swalTitle;
@@ -48,67 +52,101 @@ export default function Scoreboard() {
     }
   }, [userCounter, computerCounter]);
 
-  function determineWinnerAndUpdateCounter(computerSelection, userSelection) {
-    let swalTitle;
-    let swalIcon;
-    let swalText;
-
-    if (userSelection === computerSelection) {
-      // It's a tie
-
-      swalTitle = "Es un empate";
-    } else if (
-      (userSelection === "rock" && computerSelection === "scissors") ||
-      (userSelection === "scissors" && computerSelection === "paper") ||
-      (userSelection === "paper" && computerSelection === "rock")
-    ) {
-      // User wins
-      setUserCounter((prev) => prev + 1);
-
-      swalIcon = "success";
-      swalTitle = "Buen trabajo";
-      swalText = `Ganaste: ${userSelection} le gana a ${computerSelection}`;
-    } else {
-      // Computer wins
-      setComputerCounter((prev) => prev + 1);
-
-      swalIcon = "error";
-      swalText = `Perdiste: ${computerSelection} le gana a ${userSelection}`;
-      swalTitle = "Mala suerte";
-    }
-
-    Swal.fire({
-      title: swalTitle,
-      icon: swalIcon,
-      text: swalText,
-
-      allowOutsideClick: false, // Prevent closing by clicking outside
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // Perform your custom action here when the "OK" button is clicked
-        setUserSelection(null);
-        setComputerSelection(null);
-      } else {
-        // Handle other cases here
-        console.log('Modal closed without clicking "OK"');
-      }
-    });
-  }
-
+  //determine winner on computer pick
   useEffect(() => {
-    console.log("user effect ");
+    function determineWinnerAndUpdateCounter(computerSelection, userSelection) {
+      let swalTitle;
+      let swalIcon;
+      let swalText;
+
+      if (userSelection === computerSelection) {
+        // It's a tie
+
+        swalTitle = "Es un empate";
+      } else if (
+        (userSelection === "rock" && computerSelection === "scissors") ||
+        (userSelection === "scissors" && computerSelection === "paper") ||
+        (userSelection === "paper" && computerSelection === "rock")
+      ) {
+        // User wins
+        setUserCounter((prev) => prev + 1);
+
+        swalIcon = "success";
+        swalTitle = "Buen trabajo";
+        swalText = `Ganaste: ${userSelection} le gana a ${computerSelection}`;
+      } else {
+        // Computer wins
+        setComputerCounter((prev) => prev + 1);
+
+        swalIcon = "error";
+        swalText = `Perdiste: ${computerSelection} le gana a ${userSelection}`;
+        swalTitle = "Mala suerte";
+      }
+
+      Swal.fire({
+        title: swalTitle,
+        icon: swalIcon,
+        text: swalText,
+
+        allowOutsideClick: false, // Prevent closing by clicking outside
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Perform your custom action here when the "OK" button is clicked
+          setUserSelection(null);
+          setComputerSelection(null);
+        } else {
+          // Handle other cases here
+          console.log('Modal closed without clicking "OK"');
+        }
+      });
+    }
     if (computerSelection) {
-      console.log("user effect  inside if");
       determineWinnerAndUpdateCounter(computerSelection, userSelection);
     }
   }, [computerSelection]);
 
   return (
-    <div>
+    <header>
       <p>
-        <span>{userName}</span>:{userCounter}
+        {userName}: <AnimatedNumber value={userCounter} />
       </p>
-      <p>Computer:{computerCounter}</p>
-    </div>
+      <p>
+        Computadora:
+        {/*  <span
+          className={
+            computerCounter
+              ? "animate__animated animate__flash animate__repeat-3 animate__faster"
+              : ""
+          }
+        >
+          {computerCounter}
+        </span> */}
+        <AnimatedNumber value={computerCounter} />
+      </p>
+    </header>
+  );
+}
+
+function AnimatedNumber({ value }) {
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  function stopAnimation() {
+    setIsAnimating(false);
+  }
+
+  useEffect(() => {
+    setIsAnimating(true);
+  }, [value]);
+  return (
+    <span
+      className={
+        isAnimating
+          ? "animate__animated animate__flash animate__repeat-3 animate__faster"
+          : ""
+      }
+      onAnimationEnd={() => stopAnimation()}
+    >
+      {value}
+    </span>
   );
 }

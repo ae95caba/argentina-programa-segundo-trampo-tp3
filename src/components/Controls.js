@@ -29,11 +29,11 @@ export default function Controls() {
   }
 
   return (
-    <>
+    <div className="controls">
       <button onClick={playComputer} disabled={userSelection ? false : true}>
-        Termina tu turno
+        Elegir
       </button>
-      <button onClick={resetGame}>Reiniciar</button>
-    </>
+      <button onClick={resetGame}>Reiniciar juego</button>
+    </div>
   );
 }

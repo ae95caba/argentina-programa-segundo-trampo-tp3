@@ -6,6 +6,7 @@ import ComputerHands from "./components/ComputerHands";
 import Controls from "./components/Controls";
 import gameContext from "./context/gameContext";
 import Form from "./components/Form";
+import intro from "./assets/intro.mp4";
 function App() {
   const [userSelection, setUserSelection] = useState(null);
   const [computerSelection, setComputerSelection] = useState(null);
@@ -27,18 +28,24 @@ function App() {
         userName,
       }}
     >
-      <div className="App">
+      <>
         {userName ? (
           <>
             <Scoreboard />
             <Hands />
-
+            <Controls />
             <ComputerHands />
           </>
         ) : (
-          <Form />
+          <>
+            <Form />
+            <video controls>
+              <source src={intro} type="video/mp4" autoPlay />
+              Your browser does not support the video tag.
+            </video>
+          </>
         )}
-      </div>
+      </>
     </gameContext.Provider>
   );
 }
