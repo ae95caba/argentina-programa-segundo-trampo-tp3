@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
 import gameContext from "../context/gameContext";
 import Swal from "sweetalert2";
-
+import victorySound from "../assets/victory.mp3";
+import defeatSound from "../assets/violin.mp3";
 //muestra el puntaje de la maquina y el usuario en pantalla
 
 export default function Scoreboard() {
@@ -24,16 +25,21 @@ export default function Scoreboard() {
     let swalText;
     const playerWon = userCounter >= 3;
     const computerWon = computerCounter >= 3;
+    let audioFile;
 
     if (playerWon || computerWon) {
       if (playerWon) {
+        audioFile = victorySound;
         swalIcon = "success";
         swalText = "Ganaste 3 veces, felicidades";
       } else {
+        audioFile = defeatSound;
         swalIcon = "error";
         swalText = "La computadora gano 3 veces, lo siento";
       }
       swalTitle = "Termino el juego";
+      const audio = new Audio(audioFile);
+
       const displayAlert = () => {
         Swal.fire({
           title: swalTitle,
@@ -48,12 +54,15 @@ export default function Scoreboard() {
             setComputerSelection(null);
             setUserCounter(0);
             setComputerCounter(0);
+            audio.pause();
+            audio.currentTime = 0; // Reset to the beginning
           }
         });
       };
 
       setTimeout(() => {
         displayAlert();
+        audio.play();
       }, 500);
     }
   }, [userCounter, computerCounter]);
