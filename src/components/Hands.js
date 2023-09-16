@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import gameContext from "../context/gameContext";
-
+import clickSound from "../assets/click-button.mp3";
 //muestra las opciones del jugador (papel, piedra y tijera)
 //y manda al estado su eleccion
 export default function Hands() {
@@ -9,8 +9,8 @@ export default function Hands() {
   //guarda el data-value de la imagen seleccionada en el estado
   function handleClick(e) {
     const userHandPick = e.target.getAttribute("data-value");
-  
-
+    const audio = new Audio(clickSound);
+    audio.play();
     setUserSelection(userHandPick);
   }
 

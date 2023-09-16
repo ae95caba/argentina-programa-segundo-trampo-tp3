@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import gameContext from "../context/gameContext";
+import gameStartSound from "../assets/match-start.mp3";
 
 //guarda en estado el nombre del jugador y permite iniciar el juego
 //una ves se presione el boton JUGAR
@@ -11,6 +12,8 @@ export default function Form() {
     e.preventDefault();
     const usernameValue = e.target.elements.username.value;
     setUserName(usernameValue);
+    const audio = new Audio(gameStartSound);
+    audio.play();
   }
   return (
     <form onSubmit={handleSubmit}>
