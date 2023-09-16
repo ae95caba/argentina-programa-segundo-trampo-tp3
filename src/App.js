@@ -9,6 +9,7 @@ import Form from "./components/Form";
 import intro from "./assets/intro.mp4";
 import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
+
 function App() {
   const [userSelection, setUserSelection] = useState(null);
   const [computerSelection, setComputerSelection] = useState(null);
@@ -16,6 +17,7 @@ function App() {
   const [userCounter, setUserCounter] = useState(0);
   const [computerCounter, setComputerCounter] = useState(0);
   const { width, height } = useWindowSize();
+
   return (
     <gameContext.Provider
       value={{
@@ -40,6 +42,7 @@ function App() {
               <Controls />
               <ComputerHands />
             </main>
+            {/* muestra un efecto de confeti cuando el usuario gana */}
             {userCounter >= 3 && <Confetti width={width} height={height} />}
           </>
         ) : (

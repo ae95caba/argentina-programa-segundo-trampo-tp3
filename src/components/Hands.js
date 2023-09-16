@@ -1,12 +1,15 @@
 import React, { useContext } from "react";
 import gameContext from "../context/gameContext";
-import Controls from "./Controls";
+
+//muestra las opciones del jugador (papel, piedra y tijera)
+//y manda al estado su eleccion
 export default function Hands() {
   const { setUserSelection, userSelection } = useContext(gameContext);
 
+  //guarda el data-value de la imagen seleccionada en el estado
   function handleClick(e) {
     const userHandPick = e.target.getAttribute("data-value");
-    console.log(userHandPick);
+  
 
     setUserSelection(userHandPick);
   }

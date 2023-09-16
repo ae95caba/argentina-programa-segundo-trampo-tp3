@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import gameContext from "../context/gameContext";
 
+//muestra las opciones de la computadora
+//cuando el usuario apreta el boton terminar turno(del componente controls)
+//el valor de estado de compuerSeleccion se mostrara aca
 export default function ComputerHands() {
   const { computerSelection } = useContext(gameContext);
   return (

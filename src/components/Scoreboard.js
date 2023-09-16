@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
 import gameContext from "../context/gameContext";
 import Swal from "sweetalert2";
+
+//muestra el puntaje de la maquina y el usuario en pantalla
+
 export default function Scoreboard() {
   const {
     userSelection,
@@ -14,48 +17,59 @@ export default function Scoreboard() {
     setComputerSelection,
   } = useContext(gameContext);
 
-  //game ending logic
+  //muestra en modal al terminar el juego que muestra al ganador, con la opcion de reiniciar.
   useEffect(() => {
     let swalIcon;
     let swalTitle;
     let swalText;
-    if (userCounter >= 3) {
-      swalIcon = "success";
-      swalText = "Ganaste 3 veces, felicidades";
-    } else if (computerCounter >= 3) {
-      swalIcon = "error";
-      swalText = "La computadora gano 3 veces, lo siento";
-    }
-    if (userCounter >= 3 || computerCounter >= 3) {
+    const playerWon = userCounter >= 3;
+    const computerWon = computerCounter >= 3;
+
+    if (playerWon || computerWon) {
+      if (playerWon) {
+        swalIcon = "success";
+        swalText = "Ganaste 3 veces, felicidades";
+      } else {
+        swalIcon = "error";
+        swalText = "La computadora gano 3 veces, lo siento";
+      }
       swalTitle = "Termino el juego";
-      Swal.fire({
-        title: swalTitle,
-        text: swalText,
-        icon: swalIcon,
-        allowOutsideClick: false,
-        confirmButtonText: "Reiniciar juego",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Perform your custom action here when the "OK" button is clicked
-          setUserSelection(null);
-          setComputerSelection(null);
-          setUserCounter(0);
-          setComputerCounter(0);
-        } else {
-          // Handle other cases here
-          console.log('Modal closed without clicking "OK"');
-        }
-      });
+      const displayAlert = () => {
+        Swal.fire({
+          title: swalTitle,
+          text: swalText,
+          icon: swalIcon,
+          allowOutsideClick: false,
+          confirmButtonText: "Reiniciar juego",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Perform your custom action here when the "OK" button is clicked
+            setUserSelection(null);
+            setComputerSelection(null);
+            setUserCounter(0);
+            setComputerCounter(0);
+          }
+        });
+      };
+
+      setTimeout(() => {
+        displayAlert();
+      }, 500);
     }
   }, [userCounter, computerCounter]);
 
-  //determine winner on computer pick
+  //despues de que la computadora seleccione una opcion
+  //se calcula al ganador entre la computadora y el usuario
+  //de acuerdo a esto se modifica el contador(estado) y se muestra una alerta
   useEffect(() => {
-    function determineWinnerAndUpdateCounter(computerSelection, userSelection) {
+    function updateCountersAndShowAlertAccordingToWinner(
+      computerSelection,
+      userSelection
+    ) {
       let swalTitle;
       let swalIcon;
       let swalText;
-
+      let isLastRound = false;
       if (userSelection === computerSelection) {
         // It's a tie
 
@@ -66,6 +80,7 @@ export default function Scoreboard() {
         (userSelection === "paper" && computerSelection === "rock")
       ) {
         // User wins
+        isLastRound = userCounter == 2;
         setUserCounter((prev) => prev + 1);
 
         swalIcon = "success";
@@ -73,6 +88,7 @@ export default function Scoreboard() {
         swalText = `Ganaste: ${userSelection} le gana a ${computerSelection}`;
       } else {
         // Computer wins
+        isLastRound = computerCounter == 2;
         setComputerCounter((prev) => prev + 1);
 
         swalIcon = "error";
@@ -80,25 +96,34 @@ export default function Scoreboard() {
         swalTitle = "Mala suerte";
       }
 
-      Swal.fire({
-        title: swalTitle,
-        icon: swalIcon,
-        text: swalText,
+      const displayAlert = () => {
+        Swal.fire({
+          title: swalTitle,
+          icon: swalIcon,
+          text: swalText,
 
-        allowOutsideClick: false, // Prevent closing by clicking outside
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Perform your custom action here when the "OK" button is clicked
-          setUserSelection(null);
-          setComputerSelection(null);
-        } else {
-          // Handle other cases here
-          console.log('Modal closed without clicking "OK"');
-        }
-      });
+          allowOutsideClick: false, // Prevent closing by clicking outside
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Perform your custom action here when the "OK" button is clicked
+            setUserSelection(null);
+            setComputerSelection(null);
+          }
+        });
+      };
+
+      if (!isLastRound) {
+        setTimeout(() => {
+          displayAlert();
+        }, 500);
+      }
     }
+
     if (computerSelection) {
-      determineWinnerAndUpdateCounter(computerSelection, userSelection);
+      updateCountersAndShowAlertAccordingToWinner(
+        computerSelection,
+        userSelection
+      );
     }
   }, [computerSelection]);
 
@@ -115,6 +140,8 @@ export default function Scoreboard() {
   );
 }
 
+//es el numero que representa el puntaje del jugador y la maquina (1 por c/u)
+//lo volvi un componente para poder animarlo cada que cambie su valor(props)
 function AnimatedNumber({ value }) {
   const [isAnimating, setIsAnimating] = useState(false);
 

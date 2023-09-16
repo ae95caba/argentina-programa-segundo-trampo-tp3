@@ -1,13 +1,16 @@
 import React, { useContext } from "react";
 import gameContext from "../context/gameContext";
+
+//guarda en estado el nombre del jugador y permite iniciar el juego
+//una ves se presione el boton JUGAR
 export default function Form() {
   const { setUserName } = useContext(gameContext);
 
+  //guarda el valor ingresado al estado
   function handleSubmit(e) {
     e.preventDefault();
     const usernameValue = e.target.elements.username.value;
     setUserName(usernameValue);
-    console.log(usernameValue);
   }
   return (
     <form onSubmit={handleSubmit}>
