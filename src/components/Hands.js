@@ -12,8 +12,8 @@ export default function Hands() {
   }
 
   return (
-    <div>
-      <h2>Selecciona una opcion:</h2>
+    <div className="hands-container">
+      <h3>Selecciona una opcion:</h3>
       <div className="hands">
         <img
           onClick={handleClick}

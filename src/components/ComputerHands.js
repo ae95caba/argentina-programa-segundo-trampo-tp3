@@ -4,8 +4,8 @@ import gameContext from "../context/gameContext";
 export default function ComputerHands() {
   const { computerSelection } = useContext(gameContext);
   return (
-    <div>
-      <h2>Seleccion de la PC :</h2>
+    <div className="hands-container">
+      <h3>Seleccion de la PC :</h3>
       <div className="hands">
         <img
           src="https://img.freepik.com/vector-premium/icono-tijeras-corte-concepto-tijeras-abiertas_74669-470.jpg?w=2000"

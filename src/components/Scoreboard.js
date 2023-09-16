@@ -14,9 +14,6 @@ export default function Scoreboard() {
     setComputerSelection,
   } = useContext(gameContext);
 
-  const userCounterRef = useRef(null);
-  const computerCounterRef = useRef(null);
-
   //game ending logic
   useEffect(() => {
     let swalIcon;
@@ -112,15 +109,6 @@ export default function Scoreboard() {
       </p>
       <p>
         Computadora:
-        {/*  <span
-          className={
-            computerCounter
-              ? "animate__animated animate__flash animate__repeat-3 animate__faster"
-              : ""
-          }
-        >
-          {computerCounter}
-        </span> */}
         <AnimatedNumber value={computerCounter} />
       </p>
     </header>
