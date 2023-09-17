@@ -14,6 +14,10 @@
   }
 }
 
+body {
+  padding: 0 !important;
+}
+
 .hands-container {
   display: flex;
   flex-direction: column;
@@ -36,6 +40,23 @@ button {
   background-color: black;
   color: white;
   border-radius: 0.5rem;
+}
+
+.fade-out {
+  animation-name: fade-out;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 0;
+    background-color: transparent; /* Start with a transparent background */
+  }
+  to {
+    opacity: 1;
+    background-color: black; /* Transition to a black background */
+  }
 }
 
 form {
@@ -89,6 +110,9 @@ main {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
 }
 header {
   max-width: 100vw;
