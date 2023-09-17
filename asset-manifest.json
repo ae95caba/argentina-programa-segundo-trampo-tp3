@@ -1,20 +1,23 @@
 {
   "files": {
-    "main.css": "/practico3/static/css/main.70f70a05.css",
-    "main.js": "/practico3/static/js/main.e39a49f2.js",
+    "main.css": "/practico3/static/css/main.68cb8129.css",
+    "main.js": "/practico3/static/js/main.859a954f.js",
     "static/js/787.f9640105.chunk.js": "/practico3/static/js/787.f9640105.chunk.js",
     "static/media/intro.mp4": "/practico3/static/media/intro.b226e2d08f17c3a73068.mp4",
     "static/media/violin.mp3": "/practico3/static/media/violin.506ae9f0e8bf4d4e869f.mp3",
     "static/media/victory.mp3": "/practico3/static/media/victory.2c83a8e14260c8be6bc9.mp3",
+    "static/media/fail.mp3": "/practico3/static/media/fail.d43cbdef196c9500c67a.mp3",
     "static/media/match-start.mp3": "/practico3/static/media/match-start.0ef54de00adfc61c3be1.mp3",
+    "static/media/boing.mp3": "/practico3/static/media/boing.79352efb5919114d19fc.mp3",
+    "static/media/good.mp3": "/practico3/static/media/good.3498592142c6a444b30b.mp3",
     "static/media/click-button.mp3": "/practico3/static/media/click-button.b070217cc3ec9826fd89.mp3",
     "index.html": "/practico3/index.html",
-    "main.70f70a05.css.map": "/practico3/static/css/main.70f70a05.css.map",
-    "main.e39a49f2.js.map": "/practico3/static/js/main.e39a49f2.js.map",
+    "main.68cb8129.css.map": "/practico3/static/css/main.68cb8129.css.map",
+    "main.859a954f.js.map": "/practico3/static/js/main.859a954f.js.map",
     "787.f9640105.chunk.js.map": "/practico3/static/js/787.f9640105.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.70f70a05.css",
-    "static/js/main.e39a49f2.js"
+    "static/css/main.68cb8129.css",
+    "static/js/main.859a954f.js"
   ]
 }
