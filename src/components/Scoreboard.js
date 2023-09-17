@@ -5,6 +5,7 @@ import victorySound from "../assets/victory.mp3";
 import defeatSound from "../assets/violin.mp3";
 import goodSound from "../assets/good.mp3";
 import failSound from "../assets/fail.mp3";
+import boingSound from "../assets/boing.mp3";
 //muestra el puntaje de la maquina y el usuario en pantalla
 
 export default function Scoreboard() {
@@ -84,7 +85,7 @@ export default function Scoreboard() {
       let isLastRound = false;
       if (userSelection === computerSelection) {
         // It's a tie
-
+        audioFile = boingSound;
         swalTitle = "Es un empate";
       } else if (
         (userSelection === "rock" && computerSelection === "scissors") ||

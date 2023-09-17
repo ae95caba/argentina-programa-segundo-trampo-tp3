@@ -9,6 +9,7 @@ import Form from "./components/Form";
 import intro from "./assets/intro.mp4";
 import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
+import gameStartSound from "./assets/match-start.mp3";
 
 function App() {
   const [userSelection, setUserSelection] = useState(null);
@@ -17,6 +18,13 @@ function App() {
   const [userCounter, setUserCounter] = useState(0);
   const [computerCounter, setComputerCounter] = useState(0);
   const { width, height } = useWindowSize();
+
+  useEffect(() => {
+    if (userCounter === 0 && computerCounter === 0 && userName) {
+      const audio = new Audio(gameStartSound);
+      audio.play();
+    }
+  }, [userCounter, computerCounter, userName]);
 
   return (
     <gameContext.Provider
