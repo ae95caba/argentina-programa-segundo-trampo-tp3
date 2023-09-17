@@ -3,6 +3,8 @@ import gameContext from "../context/gameContext";
 import Swal from "sweetalert2";
 import victorySound from "../assets/victory.mp3";
 import defeatSound from "../assets/violin.mp3";
+import goodSound from "../assets/good.mp3";
+import failSound from "../assets/fail.mp3";
 //muestra el puntaje de la maquina y el usuario en pantalla
 
 export default function Scoreboard() {
@@ -18,7 +20,7 @@ export default function Scoreboard() {
     setComputerSelection,
   } = useContext(gameContext);
 
-  //muestra en modal al terminar el juego que muestra al ganador, con la opcion de reiniciar.
+  //muestra en modal al terminar el juego que muestra al ganador final, con la opcion de reiniciar.
   useEffect(() => {
     let swalIcon;
     let swalTitle;
@@ -75,6 +77,7 @@ export default function Scoreboard() {
       computerSelection,
       userSelection
     ) {
+      let audioFile;
       let swalTitle;
       let swalIcon;
       let swalText;
@@ -89,9 +92,10 @@ export default function Scoreboard() {
         (userSelection === "paper" && computerSelection === "rock")
       ) {
         // User wins
+
         isLastRound = userCounter == 2;
         setUserCounter((prev) => prev + 1);
-
+        audioFile = goodSound;
         swalIcon = "success";
         swalTitle = "Buen trabajo";
         swalText = `Ganaste: ${userSelection} le gana a ${computerSelection}`;
@@ -99,12 +103,13 @@ export default function Scoreboard() {
         // Computer wins
         isLastRound = computerCounter == 2;
         setComputerCounter((prev) => prev + 1);
-
+        audioFile = failSound;
         swalIcon = "error";
         swalText = `Perdiste: ${computerSelection} le gana a ${userSelection}`;
         swalTitle = "Mala suerte";
       }
 
+      const audio = new Audio(audioFile);
       const displayAlert = () => {
         Swal.fire({
           title: swalTitle,
@@ -117,6 +122,7 @@ export default function Scoreboard() {
             // Perform your custom action here when the "OK" button is clicked
             setUserSelection(null);
             setComputerSelection(null);
+            audio.pause();
           }
         });
       };
@@ -124,6 +130,7 @@ export default function Scoreboard() {
       if (!isLastRound) {
         setTimeout(() => {
           displayAlert();
+          audio.play();
         }, 500);
       }
     }
