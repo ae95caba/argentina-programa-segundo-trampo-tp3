@@ -20,6 +20,7 @@ export default function Controls() {
   }
   //usa el string de la funcion anterior para cambiar el estado
   function playComputer() {
+    console.log("asdf");
     const computerSelection = getComputerSelection();
 
     setComputerSelection(computerSelection);

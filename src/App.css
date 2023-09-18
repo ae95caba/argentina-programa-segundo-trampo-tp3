@@ -40,6 +40,9 @@ button {
   background-color: black;
   color: white;
   border-radius: 0.5rem;
+  &:disabled {
+    opacity: 0.2;
+  }
 }
 
 .fade-out {
