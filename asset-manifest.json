@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/practico3/static/css/main.68cb8129.css",
-    "main.js": "/practico3/static/js/main.859a954f.js",
+    "main.css": "/practico3/static/css/main.f963b843.css",
+    "main.js": "/practico3/static/js/main.58e8d36d.js",
     "static/js/787.f9640105.chunk.js": "/practico3/static/js/787.f9640105.chunk.js",
     "static/media/intro.mp4": "/practico3/static/media/intro.b226e2d08f17c3a73068.mp4",
     "static/media/violin.mp3": "/practico3/static/media/violin.506ae9f0e8bf4d4e869f.mp3",
@@ -12,12 +12,12 @@
     "static/media/good.mp3": "/practico3/static/media/good.3498592142c6a444b30b.mp3",
     "static/media/click-button.mp3": "/practico3/static/media/click-button.b070217cc3ec9826fd89.mp3",
     "index.html": "/practico3/index.html",
-    "main.68cb8129.css.map": "/practico3/static/css/main.68cb8129.css.map",
-    "main.859a954f.js.map": "/practico3/static/js/main.859a954f.js.map",
+    "main.f963b843.css.map": "/practico3/static/css/main.f963b843.css.map",
+    "main.58e8d36d.js.map": "/practico3/static/js/main.58e8d36d.js.map",
     "787.f9640105.chunk.js.map": "/practico3/static/js/787.f9640105.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.68cb8129.css",
-    "static/js/main.859a954f.js"
+    "static/css/main.f963b843.css",
+    "static/js/main.58e8d36d.js"
   ]
 }
